@@ -23,7 +23,7 @@ export function getSortedPostsData() {
     // Combine data w/ the id
     return {
       id,
-      ...matterResult.data,
+      ...(matterResult.data as { date: string; title: string }),
     };
   });
 
@@ -36,12 +36,6 @@ export function getSortedPostsData() {
   });
 }
 
-/**
- * Returns an array of filenames as slugs
- *
- * @export
- * @return {object[]} array of slugs
- */
 export function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDirectory);
 
@@ -54,14 +48,7 @@ export function getAllPostIds() {
   });
 }
 
-/**
- * Gets a posts data by id
- *
- * @export
- * @param {string} id post id
- * @return {object} the post data for given id
- */
-export async function getPostData(id) {
+export async function getPostData(id: string) {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
@@ -78,6 +65,6 @@ export async function getPostData(id) {
   return {
     id,
     contentHtml,
-    ...matterResult.data,
+    ...(matterResult.data as { date: string; title: string }),
   };
 }
