@@ -17,8 +17,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/posts/[id].js",
-    "lib/posts.js"
+    "pages/posts/[id].tsx",
+    "lib/posts.ts"
   ],
   "exclude": ["node_modules"]
 }
